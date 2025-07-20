@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Razorpay Test Integration</title>
+</head>
+<body>
+  <h2>Razorpay Test Payment Demo</h2>
+  <button id="rzp-button1">Pay Now</button>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    var options = {
+      "key": "rzp_test_iexRiycSKCj5yE", // Replace with your test key
+      "amount": "100", // Amount is in paise = INR 1.00
+      "currency": "INR",
+      "name": "Test Corp",
+      "description": "Razorpay Integration Demo",
+      "handler": function (response){
+          alert("Payment successful. Payment ID: " + response.razorpay_payment_id);
+      },
+      "prefill": {
+          "name": "Test User",
+          "email": "test@example.com",
+          "contact": "9999999999"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function(e){
+      rzp1.open();
+      e.preventDefault();
+    }
+  </script>
+</body>
+</html>
